@@ -1,0 +1,20 @@
+body {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+#gameBoard {
+  background-color: red;
+  box-shadow: 25px 25px 30px black;
+  margin-top: 20px;
+}
