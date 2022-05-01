@@ -12,8 +12,8 @@ let squareSize = gameBoard.width / squareCount - 1;
 let snakeHeadX = 10;
 let snakeHeadY = 10;
 
-let appleX = 10;
-let appleY = 10;
+let appleX = 5;
+let appleY = 5;
 
 function createGame() {
   let result = isGameOver();
@@ -21,6 +21,7 @@ function createGame() {
     return;
   }
   clearScreen();
+  appleCollision();
   moveSnake();
   createSnake();
   createApple();
@@ -70,7 +71,20 @@ function createSnake() {
 
 function createApple() {
   gameRender.fillStyle = "green";
-  gameRender.fillRect(appleX * 45, appleY * 45, squareSize, squareSize);
+  gameRender.fillRect(
+    appleX * squareCount,
+    appleY * squareCount,
+    squareSize,
+    squareSize
+  );
+}
+
+function appleCollision() {
+  if (appleX === snakeHeadX && appleY === snakeHeadY) {
+    //This makes the apple appear at a random place on gameboard
+    appleX = Math.floor(Math.random() * 20);
+    appleY = Math.floor(Math.random() * 20);
+  }
 }
 
 function moveSnake() {
