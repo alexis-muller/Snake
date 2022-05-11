@@ -12,6 +12,16 @@ let squareSize = gameBoard.width / squareCount - 1;
 let snakeHeadX = 10;
 let snakeHeadY = 10;
 
+class SnakePart {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+const snakeParts = [];
+let tailLength = 0;
+
 let appleX = 5;
 let appleY = 5;
 
@@ -67,6 +77,20 @@ function createSnake() {
     squareSize,
     squareSize
   );
+  gameRender.fillStyle = "red";
+  for (let i = 0; i < snakeParts.length; i++) {
+    let part = snakeParts[i];
+    gameRender.fillRect(
+      part.x * squareCount,
+      part.y * squareCount,
+      squareSize,
+      squareSize
+    );
+  }
+  snakeParts.push(new SnakePart(snakeHeadX, snakeHeadY));
+  while (snakeParts.length > tailLength) {
+    snakeParts.shift();
+  }
 }
 
 function createApple() {
@@ -84,6 +108,7 @@ function appleCollision() {
     //This makes the apple appear at a random place on gameboard
     appleX = Math.floor(Math.random() * 20);
     appleY = Math.floor(Math.random() * 20);
+    tailLength++;
   }
 }
 
